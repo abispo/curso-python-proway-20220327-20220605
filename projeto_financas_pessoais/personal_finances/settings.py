@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'register.apps.RegisterConfig',
     'financial_account.apps.FinancialAccountConfig',
+    'transactions.apps.TransactionsConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
