@@ -15,10 +15,10 @@
                 <form method="POST" action="">
                     {% csrf_token %}
                   <div class="mb-3">
-                    <input type="text" class="form-control" id="inputUsername" placeholder="Informe o seu login">
+                    <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Informe o seu login">
                   </div>
                   <div class="mb-3">
-                    <input type="password" class="form-control" id="inputUserPassword" placeholder="Informe a sua senha">
+                    <input type="password" class="form-control" id="inputUserPassword" name="password" placeholder="Informe a sua senha">
                   </div>
                   <!--
                   <div class="mb-3 form-check">
@@ -26,8 +26,11 @@
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                   </div>
                   -->
+                  {% if form.errors %}
+                    <div class="text-danger">{{     form.errors }}</div>
+                  {% endif %}
                   <div class="mb-3">
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="submit" class="btn btn-primary">Entrar</button>
                   </div>
                   <div class="mb3">
                       Não tem cadastro? <a href="{% url 'register:new' %}">Clique aqui</a>
