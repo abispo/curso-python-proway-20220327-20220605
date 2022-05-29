@@ -20,6 +20,15 @@
             {% endif %}
         </div>
     </div>
+    <div>
+         <div class="col text-center">
+            {% if transactions %}
+                <h4>Você tem atualmente <a href="#">{{ user_transactions|length }} transações</a> registradas</h4>
+            {% else %}
+                <h4>Você não possui transações registradas. <a href="#">Cadastre a primeira</a></h4>
+            {% endif %}
+        </div>
+    </div>
     {% else %}
         <div class="row">
             <div class="col justify-content-center">
