@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container" style="max-width: 480px;">
+
+    {% if user.is_authenticated %}
+        <p class="text-center">Você está autenticado como: {{ user.username }}</p>
+    {% else %}
+        <div class="row mt-4 pt-4">
+            <div class="col text-center mb-3">Faça seu Login</div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                  <div class="mb-3">
+                    <input type="text" class="form-control" id="inputUsername" placeholder="Informe o seu login">
+                  </div>
+                  <div class="mb-3">
+                    <input type="password" class="form-control" id="inputUserPassword" placeholder="Informe a sua senha">
+                  </div>
+                  <!--
+                  <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                  </div>
+                  -->
+                  <div class="mb-3">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                  <div class="mb3">
+                      Não tem cadastro? <a href="{% url 'register:new' %}">Clique aqui</a>
+                  </div>
+
+                </form>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}
