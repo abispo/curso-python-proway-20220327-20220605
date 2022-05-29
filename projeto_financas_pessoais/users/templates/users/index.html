@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container" style="max-width: 600px  ">
+<div class="container" style="max-width: 800px  ">
     {% if user.is_authenticated %}
         <div class="row">
             <div class="col text-center">
@@ -11,6 +11,15 @@
                 <hr>
             </div>
         </div>
+    <div class="row">
+        <div class="col text-center">
+            {% if financial_accounts %}
+                <h4>Você tem atualmente <a href="{% url 'users:list_accounts' %}">{{ financial_accounts|length }} contas</a> cadastradas</h4>
+            {% else %}
+                <h4>Você não possui contas cadastradas. <a href="{% url 'financial_accounts:new' %}">Cadastre a primeira</a></h4>
+            {% endif %}
+        </div>
+    </div>
     {% else %}
         <div class="row">
             <div class="col justify-content-center">

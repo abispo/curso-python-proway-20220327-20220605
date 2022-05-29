@@ -22,6 +22,7 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('registration/', include('django.contrib.auth.urls')),
     path('register/', include('register.urls')),
+    path('financial-accounts/', include('financial_account.urls'))
 
     # path('registration/', RedirectView.as_view(url='login/', permanent=True))
 ]

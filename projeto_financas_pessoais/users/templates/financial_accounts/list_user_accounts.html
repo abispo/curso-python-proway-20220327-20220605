@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h2>Lista de contas do usuário {{ user.first_name }}</h2>
+            <h4><a href="{% url 'users:index' %}">Voltar a página principal</a></h4>
+            <hr>
+        </div>
+    </div>
+    <div class="row border-bottom border-dark">
+        <div class="col">Nome da Conta</div>
+        <div class="col">Saldo</div>
+    </div>
+    {% for financial_account in financial_accounts %}
+        <div class="row my-1{% if forloop.counter0|divisibleby:'2' %} bg-secondary bg-opacity-10{% endif %}">
+            <div class="col">{{ financial_account.name }}</div>
+            <div class="col">{{ financial_account.balance }}</div>
+        </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'financial_accounts:new' %}">Criar uma nova conta</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

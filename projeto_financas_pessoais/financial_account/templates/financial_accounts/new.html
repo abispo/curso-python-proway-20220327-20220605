@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="container" style="max-width: 600px">
+        <div class="row mt-4 pt-4">
+            <div class="col text-center mb-3">Cadastro de contas</div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                  <div class="mb-3">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Informe o nome da nova conta" required>
+                  </div>
+                  <div class="mb-3">
+                    <input type="text" class="form-control" id="balance" name="balance" placeholder="Informe o saldo da conta (opcional)">
+                  </div>
+                  <div class="mb-3">
+                      <button type="submit" class="btn btn-primary">Cadastrar</button>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
