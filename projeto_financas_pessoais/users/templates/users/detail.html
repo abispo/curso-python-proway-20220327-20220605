@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row my-3">
+        <div class="col text-center">
+            <h1>Perfil do usuário {{ user.username }}</h1>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <p><strong>Nome:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p><strong>Email: </strong>{{ user.email }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p><strong>Data de Nascimento: </strong>{{ user.birth_date|date:"d/m/Y" }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p><strong>Data de Cadastro: </strong>{{ user.date_joined|date:"H:i:s d/m/Y" }}</p>
+        </div>
+    </div>
+    <div class="row border-bottom">
+        <div class="col">
+            <p><strong>Data de último Login: </strong>{{ user.last_login|date:"H:i:s d/m/Y" }}</p>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col">
+            <a href="{% url 'users:index' %}">Voltar para a página principal</a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

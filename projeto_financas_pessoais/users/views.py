@@ -22,6 +22,10 @@ def index(request):
     return render(request, 'users/index.html', context=context)
 
 
+def detail(request):
+    return render(request, 'users/detail.html')
+
+
 def list_accounts(request):
 
     user = request.user.user
