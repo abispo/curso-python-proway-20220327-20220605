@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h2>Lista de transações do usuário {{ user.first_name }}</h2>
+            <h4><a href="{% url 'users:index' %}">Voltar a página principal</a></h4>
+            <hr>
+        </div>
+    </div>
+    <div class="row border-bottom border-dark">
+        <div class="col">Conta Debitada</div>
+        <div class="col">Conta Creditada</div>
+        <div class="col">Valor da transação</div>
+        <div class="col">Data/Hora</div>
+    </div>
+    {% for transaction in transactions %}
+        <div class="row my-1{% if forloop.counter0|divisibleby:'2' %} bg-secondary bg-opacity-10{% endif %}">
+            <div class="col">{{ transaction.debit_account.name }}</div>
+            <div class="col">{{ transaction.credit_account.name }}</div>
+            <div class="col">{{ transaction.value }}</div>
+            <div class="col">{{ transaction.timestamp|date:"H:i:s d/m/Y" }}</div>
+        </div>
+    {% endfor %}
+    <div class="row mt-5">
+        <div class="col">
+            <a href="{% url 'transactions:new' %}">Criar uma nova transação</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

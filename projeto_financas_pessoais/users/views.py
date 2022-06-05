@@ -1,5 +1,7 @@
+from django.db.models import Q
 from django.shortcuts import render
 
+from financial_account.models import FinancialAccount
 from transactions.models import Transactions
 
 
@@ -32,4 +34,26 @@ def list_accounts(request):
 
 
 def list_transactions(request):
-    pass
+
+    user = request.user.user
+
+    context = {
+        'transactions': Transactions.objects.filter(debit_account__user=user).all()
+    }
+
+    return render(request, 'transactions/list_user_transactions.html', context=context)
+
+
+def account_detail(request, account_id):
+
+    account = FinancialAccount.objects.get(pk=account_id)
+    account_transactions = Transactions.objects.filter(
+        Q(debit_account=account) | Q(credit_account=account)
+    ).order_by('-timestamp')
+
+    context = {
+        'account': account,
+        'account_transactions': account_transactions
+    }
+
+    return render(request, 'financial_accounts/user_account_detail.html', context=context)

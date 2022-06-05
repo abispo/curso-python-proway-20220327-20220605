@@ -16,7 +16,7 @@
     </div>
     {% for financial_account in financial_accounts %}
         <div class="row my-1{% if forloop.counter0|divisibleby:'2' %} bg-secondary bg-opacity-10{% endif %}">
-            <div class="col">{{ financial_account.name }}</div>
+            <div class="col"><a href="{% url 'users:account_detail' financial_account.id %}">{{ financial_account.name }}</a></div>
             <div class="col">{{ financial_account.balance }}</div>
         </div>
     {% endfor %}

@@ -23,7 +23,7 @@
     <div>
          <div class="col text-center">
             {% if transactions %}
-                <h4>Você tem atualmente <a href="#">{{ user_transactions|length }} transações</a> registradas</h4>
+                <h4>Você tem atualmente <a href="{% url 'users:list_transactions' %}">{{ transactions|length }} transações</a> registradas</h4>
             {% else %}
                 <h4>Você não possui transações registradas. <a href="{% url 'transactions:new' %}">Cadastre a primeira</a></h4>
             {% endif %}

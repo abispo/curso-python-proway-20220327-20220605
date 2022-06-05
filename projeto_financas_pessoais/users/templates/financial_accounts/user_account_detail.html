@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row my-3">
+        <div class="col text-center">
+            <h1>Informações da conta '{{ account.name }}'</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3>Data de criação: {{ account.created_at|date:"H:i:s d/m/Y" }}</h3>
+        </div>
+    </div>
+    <div class="row border-bottom mb-3">
+        <div class="col">
+            <h3>Saldo atual: {{ account.balance }}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <h2>Transações onde a conta '{{ account.name }}' aparece:</h2>
+        </div>
+    </div>
+    {% if account_transactions %}
+        <div class="row my-3 border-bottom">
+            <div class="col"><strong>Conta Debitada</strong></div>
+            <div class="col"><strong>Conta Creditada</strong></div>
+            <div class="col"><stron>Valor</stron></div>
+            <div class="col"><strong>Data/Hora</strong></div>
+        </div>
+
+        {% for transaction in account_transactions %}
+            <div class="row">
+                <div class="col">{{ transaction.debit_account.name }}</div>
+                <div class="col">{{ transaction.credit_account.name }}</div>
+                <div class="col">{{ transaction.value }}</div>
+                <div class="col">{{ transaction.timestamp|date:"H:i:s d/m/Y" }}</div>
+            </div>
+        {% endfor %}
+
+    {% else %}
+        <div class="row">
+            <div class="col">
+                Essa conta não está associada a nenhuma transação.
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row my-3 border-top">
+        <div class="col">
+            <a href="{% url 'users:list_accounts' %}">Voltar para a listagem de contas</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
